@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+
+# Builds
+build/
+dist/
+installer/output/
+
+# Local research data (never commit large/private datasets)
+data/raw/
+data/normalized/
+data/cache/
+data/immutable_test/
+models/
+checkpoints/
+reports/generated/
+logs/
+
+# Secrets and machine-local configuration
+.env
+*.key
+*.pem
+local.settings.json
+
+# IDE / OS
+.idea/
+.vscode/
+Thumbs.db
+Desktop.ini
+
