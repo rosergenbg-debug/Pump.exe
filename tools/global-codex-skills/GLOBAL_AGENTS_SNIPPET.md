@@ -7,39 +7,69 @@ These are the owner's default rules for all Codex projects. More-specific reposi
 
 The owner should not have to manually remember, copy, or install the same skills for every new project.
 
-For every substantial new project, workstream, or recurring workflow:
+For substantial new projects, workstreams, or recurring workflows:
 
-1. Consider the user-level skill `skill-orchestrator` and follow it when relevant.
-2. Reuse the user-level core skills automatically when they match the task:
+1. Use `skill-orchestrator` when reusable workflow organization is relevant.
+2. Reuse the user-level core skills only when they match the task:
    - `core-engineering-discipline`
    - `core-systematic-debugging`
    - `core-tdd-review`
    - `core-verification`
-3. Do **not** copy these global core skills into each repository. They already apply user-wide.
-4. Inspect project-local `.agents/skills/` and prefer a project-local specialization over a generic global skill when both cover the same work.
-5. When a non-trivial project develops a stable project-specific workflow, repeated failure mode, important domain invariant, or specialized recurring procedure, create a concise text-only project skill under `.agents/skills/<name>/SKILL.md` automatically when the benefit is clear.
-6. Do not create skills for trivial one-off tasks or duplicate existing instructions.
-7. Keep `AGENTS.md` concise. If a long instruction applies only to one class of tasks, prefer a focused project-local skill.
-8. Mention newly created project-local skills in the work summary so the owner knows what was organized, but do not require the owner to request the skill manually.
+3. Do **not** copy these global skills into repositories; they already apply user-wide.
+4. Prefer a project-local specialization when it covers the same area more specifically.
+5. Create concise text-only project skills automatically only for stable project-specific workflows, repeated failure modes, domain invariants, or recurring specialized procedures.
+6. Do not create skills for trivial one-off tasks or duplicate an existing skill under another name.
+7. Keep `AGENTS.md` concise; move long conditional procedures into focused local skills.
+8. Mention newly created local skills in the work summary, but do not make the owner administer them manually.
+
+## Cost and loop control
+
+- Perform one orchestration decision pass per task unless scope materially changes.
+- Never recursively invoke `skill-orchestrator` from itself.
+- Do not rerun the same skill/tool on unchanged inputs.
+- Default to one agent; do not create subagents merely to select/evaluate skills.
+- Prefer deterministic local checks over live model benchmarks.
+- Reuse test/build/scan evidence instead of repeating expensive verification without cause.
+
+## Official OpenAI Plugin Eval
+
+When the official OpenAI `plugin-eval` CLI is available:
+
+- for a new or materially changed non-trivial skill/plugin, run at most one `plugin-eval analyze <path> --format markdown` per changed target per task;
+- use `explain-budget` only when token/context size matters;
+- do not automatically run `plugin-eval start`, `init-benchmark`, or `benchmark` for routine checks;
+- live benchmarks require an explicit owner request because they may consume Codex credits;
+- do not automatically evaluate the orchestrator merely because it executed;
+- never create an evaluate -> rewrite -> evaluate loop.
+
+If Plugin Eval is unavailable, use normal static review and continue; do not substitute an unknown plugin silently.
+
+## Official OpenAI Codex Security
+
+When Codex Security is installed, use it only for explicit security work or security-sensitive changes such as auth, secrets, untrusted input, network/API boundaries, persistent storage, permissions, dependency/security updates, signing/update chains, executable downloads, or justified release gates.
+
+- Prefer one final-diff security scan for ordinary security-sensitive work.
+- Do not scan cosmetic or unrelated small edits.
+- Allow one verification re-scan only if the first scan produced an actionable finding and the code changed to fix it.
+- Do not create scan -> fix -> scan loops.
+- Full/deep scans are for explicit audits, major security work, or justified major-release checks.
 
 ## External skill safety
 
-Do not blindly install external skill bundles or `--skill '*'` collections.
+Do not blindly install external bundles or `--skill '*'` collections. Audit `SKILL.md`, referenced scripts/hooks, MCP/API configuration, network calls, permissions, and data access. Prefer a small audited text-only adaptation when enough.
 
-Before adopting an external skill, audit its `SKILL.md` and all referenced scripts, hooks, MCP/API configuration, network calls, permissions, and data access. Prefer a small audited text-only adaptation when that is enough.
-
-A safe instruction-only project skill may be created automatically. Explicit owner approval is required before installing or enabling an external skill that executes code, adds hooks, contacts external services, uses credentials, changes persistent global configuration, installs packages, or grants new permissions.
+A safe instruction-only project skill may be created automatically. External tools that execute code, add hooks, contact services, use credentials, install packages, change persistent global configuration, or grant permissions require explicit owner approval unless that exact integration has already been explicitly approved.
 
 ## New-project bootstrap
 
-When the owner begins a genuinely new non-trivial project, treat agent organization as part of the project setup:
+When the owner begins a genuinely new non-trivial project:
 
-- inspect the repository and existing instructions;
+- inspect repository and existing instructions;
 - use global skills without copying them;
-- create a concise repository `AGENTS.md` if durable project rules are needed and no adequate one exists;
-- create only the project-specific skills already justified by the work;
-- add or refine project skills later as repeated workflows and failure patterns become clear;
-- keep the skill set small, non-overlapping, and useful.
+- create concise repository `AGENTS.md` only when durable project rules are needed;
+- create only already-justified project-specific skills;
+- add/refine local skills as repeated workflows and failure patterns emerge;
+- keep the total skill set small, non-overlapping, and useful.
 
-The normal experience for the owner should be: describe the project goal, not administer the skill system.
+The normal owner experience should be: describe the project goal, not administer the skill system.
 <!-- SERGE_GLOBAL_SKILL_POLICY_END -->
