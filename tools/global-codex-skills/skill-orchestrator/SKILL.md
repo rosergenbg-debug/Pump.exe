@@ -1,11 +1,15 @@
 ---
 name: skill-orchestrator
-description: Global Codex skill manager for all projects. Use at the start of substantial new projects and when reusable workflow rules may help. Reuses global core skills, prefers project-local specializations, creates safe project-local text-only skills when useful, and coordinates approved OpenAI evaluation/security tools with strict anti-loop and credit-budget limits.
+description: Global Codex skill manager for bootstrapping substantial new projects and for explicit skill-system maintenance or clearly reusable new workflows. In established projects that already have a project-local coordinator/skill policy, defer to it unless skill organization itself needs work. Coordinates global core skills and approved OpenAI eval/security tools with strict anti-loop and credit-budget limits.
 ---
 
 # Global Skill Orchestrator
 
 User-level coordination skill for every Codex project. The owner should normally describe the project goal, not administer skills.
+
+## Activation boundary
+
+Do not load this orchestrator for every ordinary task in an established project. If the repository already has a project-local coordinator or mature skill policy, that local system handles normal work. Use this orchestrator there only when creating/changing skills, bootstrapping a new workstream, resolving overlap, or when a genuinely reusable workflow appears.
 
 ## Priority
 
@@ -18,7 +22,7 @@ Never override, weaken, or silently reinterpret:
 
 When a project-local skill specializes a global skill, prefer the project-local specialization for that project.
 
-## Start of substantial work
+## Start of substantial new work or skill maintenance
 
 1. Inspect the repository/project structure before inventing rules.
 2. Read `AGENTS.md` and existing `.agents/skills/*/SKILL.md` if present.
@@ -29,7 +33,7 @@ When a project-local skill specializes a global skill, prefer the project-local 
 
 ## Global core skills
 
-Use automatically when relevant:
+Use automatically when relevant **only when no project-local equivalent already covers the same work**:
 
 - `core-engineering-discipline` — assumptions, scope control, simplest sufficient design, focused diffs.
 - `core-systematic-debugging` — reproduction, evidence, root cause, regression protection.
