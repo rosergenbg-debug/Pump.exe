@@ -1,15 +1,17 @@
 ---
 name: core-tdd-review
-description: Use for non-trivial behavior changes, risky fixes, algorithms, persistence, migrations, public interfaces, calculations, and regressions where tests can materially prove correctness. Applies pragmatic test-first thinking and a focused post-change code review without forcing ceremony onto trivial edits.
+description: Generic fallback TDD and focused-review protocol for non-trivial behavior changes, risky fixes, algorithms, persistence, migrations, public interfaces, calculations, or regressions when no more-specific project-local test/review skill covers the same work. Uses pragmatic tests as evidence without forcing ceremony on trivial edits.
 ---
 
 # Core TDD and Focused Review
 
-Use testing as evidence, not ritual. Project-local test conventions and specialized skills take priority.
+Use testing as evidence, not ritual. Apply this generic skill **only when no more-specific project-local test/review skill already covers the same change**. Do not stack it with a local equivalent merely to repeat the same checklist.
+
+Project-local test conventions and specialized skills take priority.
 
 ## When to use
 
-Apply this skill when a change can silently break behavior, data, compatibility, calculations, state transitions, concurrency, public interfaces, or a previously fixed regression.
+Apply when a change can silently break behavior, data, compatibility, calculations, state transitions, concurrency, public interfaces, or a previously fixed regression.
 
 Do not force a new test suite onto a tiny one-off text/configuration edit when no meaningful executable behavior is involved.
 
@@ -51,8 +53,8 @@ Review the final diff as if it came from another engineer. Check specifically fo
 - tests that pass without proving the requested behavior;
 - stale comments/documentation contradicted by the code.
 
-Fix substantive issues found by the review, then rerun affected verification.
+Fix substantive issues found by the review, then rerun only the affected verification.
 
 ## Completion
 
-Use `core-verification` before declaring the change complete.
+Use the project's local verification skill/procedure when present; otherwise use `core-verification`.
