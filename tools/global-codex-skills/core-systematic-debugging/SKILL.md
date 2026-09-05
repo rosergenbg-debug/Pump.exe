@@ -1,11 +1,11 @@
 ---
 name: core-systematic-debugging
-description: Use whenever any project crashes, behaves incorrectly, regresses, becomes flaky, produces suspicious data, or loses expected behavior. Requires reproduction, evidence, root-cause isolation, a minimal cause-level fix, regression protection when feasible, and verification of nearby invariants.
+description: Generic fallback debugging protocol for crashes, incorrect behavior, regressions, flaky behavior, suspicious data, or lost functionality when no more-specific project-local debugging skill covers the same failure. Requires reproduction, evidence, root-cause isolation, a cause-level fix, regression protection, and verification.
 ---
 
 # Core Systematic Debugging
 
-Use for bugs, crashes, wrong calculations, broken UI behavior, flaky tests, corrupted state, unexpected network behavior, performance regressions, and inconsistent outputs.
+Use for bugs, crashes, wrong calculations, broken UI behavior, flaky tests, corrupted state, unexpected network behavior, performance regressions, and inconsistent outputs **only when a project-local debugging skill is not already covering the same work**. Do not stack this generic skill with a local equivalent merely to repeat the same protocol.
 
 Project-local instructions and specialized debugging skills take priority.
 
@@ -72,4 +72,4 @@ Before finishing, be able to state:
 - verification performed;
 - remaining uncertainty.
 
-Then apply `core-verification`.
+Then use the project's local verification skill/procedure when present; otherwise use `core-verification`.
