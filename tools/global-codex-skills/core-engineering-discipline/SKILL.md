@@ -1,11 +1,11 @@
 ---
 name: core-engineering-discipline
-description: Use for code, architecture, refactoring, configuration, integration, or implementation changes in any project. Prevents unsupported assumptions, overengineering, scope creep, and accidental neighboring changes by requiring repository evidence, a verifiable goal, the simplest sufficient design, and focused diffs.
+description: Generic fallback engineering discipline for code, architecture, refactoring, configuration, integration, or implementation changes when no more-specific project-local engineering skill covers the same work. Prevents unsupported assumptions, overengineering, scope creep, and accidental neighboring changes through repository evidence, focused diffs, and a verifiable goal.
 ---
 
 # Core Engineering Discipline
 
-Use this as a generic engineering guardrail. More-specific repository instructions and project-local skills take priority.
+Use this as a generic engineering guardrail **only when a more-specific project-local skill is not already covering the same discipline**. Do not stack this skill with a local equivalent merely to repeat the same rules. Repository instructions and local specializations take priority.
 
 ## Rules
 
@@ -34,7 +34,7 @@ Use this as a generic engineering guardrail. More-specific repository instructio
    - Prefer a project-local specialized skill over this generic one when both cover the same area.
 
 7. **Prove the result.**
-   - Use `core-verification` before claiming the task is finished.
+   - Use the project's local verification skill/procedure when present; otherwise use `core-verification`.
 
 ## Completion question
 
