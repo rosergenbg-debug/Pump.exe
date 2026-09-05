@@ -7,20 +7,21 @@ These are the owner's default rules for all Codex projects. More-specific reposi
 
 The owner should not have to manually remember, copy, or install the same skills for every new project.
 
-For substantial new projects, workstreams, or recurring workflows:
+For substantial **new** projects/workstreams or when skill organization itself needs maintenance:
 
 1. Use `skill-orchestrator` when reusable workflow organization is relevant.
-2. Reuse the user-level core skills only when they match the task:
+2. In an established project that already has a project-local coordinator/skill policy, do **not** load `skill-orchestrator` for every ordinary task; defer to the local system unless skills themselves need work.
+3. Reuse the user-level core skills only when they match the task **and no project-local equivalent already covers the same work**:
    - `core-engineering-discipline`
    - `core-systematic-debugging`
    - `core-tdd-review`
    - `core-verification`
-3. Do **not** copy these global skills into repositories; they already apply user-wide.
-4. Prefer a project-local specialization when it covers the same area more specifically.
-5. Create concise text-only project skills automatically only for stable project-specific workflows, repeated failure modes, domain invariants, or recurring specialized procedures.
-6. Do not create skills for trivial one-off tasks or duplicate an existing skill under another name.
-7. Keep `AGENTS.md` concise; move long conditional procedures into focused local skills.
-8. Mention newly created local skills in the work summary, but do not make the owner administer them manually.
+4. Do **not** copy these global skills into repositories; they already apply user-wide.
+5. Prefer a project-local specialization when it covers the same area more specifically.
+6. Create concise text-only project skills automatically only for stable project-specific workflows, repeated failure modes, domain invariants, or recurring specialized procedures.
+7. Do not create skills for trivial one-off tasks or duplicate an existing skill under another name.
+8. Keep `AGENTS.md` concise; move long conditional procedures into focused local skills.
+9. Mention newly created local skills in the work summary, but do not make the owner administer them manually.
 
 ## Cost and loop control
 
